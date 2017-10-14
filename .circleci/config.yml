@@ -6,6 +6,7 @@ use_docker: &use_docker
 
 cache_key: &cache_key
   v1-{{ arch }}-{{ checksum "dependencies.sbt" }}
+  v1-
 
 use_restore_cache: &use_restore_cache
   restore_cache:
