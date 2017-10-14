@@ -23,7 +23,6 @@ scalacOptions := {
 					"-Ywarn-dead-code" ::
 					"-Ywarn-numeric-widen" ::
 					// "-Ywarn-unused-import" ::
-					"-Ywarn-unused:-imports" ::
 					"-Ywarn-value-discard" ::
 					Nil
 
