@@ -1,7 +1,7 @@
 package ahlers.plaid.product.response
 
+import ahlers.plaid.product.request.common
 import shapeless.tag._
-import ahlers.plaid.product.common.{ Product => CommonProduct }
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
@@ -49,5 +49,5 @@ case class Institution(
 	credentials: List[Institution.Credential],
 	hasMFA: Boolean,
 	MFAs: List[Institution.MFA],
-	products: List[CommonProduct]
+	products: List[common.Product]
 )
