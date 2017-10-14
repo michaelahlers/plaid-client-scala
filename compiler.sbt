@@ -23,6 +23,7 @@ scalacOptions := {
 					"-Ywarn-dead-code" ::
 					"-Ywarn-numeric-widen" ::
 					// "-Ywarn-unused-import" ::
+					"-Ywarn-unused:-imports" ::
 					"-Ywarn-value-discard" ::
 					Nil
 
@@ -51,12 +52,13 @@ scalacOptions := {
 					"-Ywarn-nullary-override" ::
 					"-Ywarn-nullary-unit" ::
 					"-Ywarn-numeric-widen" ::
-					"-Ywarn-unused:implicits" ::
+					// "-Ywarn-unused:implicits" ::
 					// "-Ywarn-unused:imports" ::
 					// "-Ywarn-unused:locals" ::
 					// "-Ywarn-unused:params" ::
 					// "-Ywarn-unused:patvars" ::
 					// "-Ywarn-unused:privates" ::
+					"-Ywarn-unused:-imports" ::
 					"-Ywarn-value-discard" ::
 					Nil
 
