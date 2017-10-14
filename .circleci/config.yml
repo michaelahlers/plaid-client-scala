@@ -35,7 +35,7 @@ jobs:
     steps:
       - checkout
       - *use_restore_cache
-      - run: sbt +test:compile
+      - run: sbt +compile
       - *use_save_cache
       - persist_to_workspace:
           root: *workspace_path
