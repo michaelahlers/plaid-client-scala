@@ -1,0 +1,81 @@
+version: 2
+
+use_docker: &use_docker
+  docker:
+    - image: circleci/openjdk:9-jdk
+
+cache_key: &cache_key
+  v1-{{ arch }}-{{ checksum "dependencies.sbt" }}
+
+use_restore_cache: &use_restore_cache
+  restore_cache:
+    keys:
+      - *cache_key
+
+use_save_cache: &use_save_cache
+  save_cache:
+    key: *cache_key
+    paths:
+      - ~/.ivy2
+      - ~/.m2
+      - ~/.sbt
+
+workspace_path: &workspace_path
+  /home/circleci
+
+use_workspace: &use_workspace
+ attach_workspace:
+   at: *workspace_path
+
+jobs:
+
+  build:
+    <<: *use_docker
+    steps:
+      - checkout
+      - *use_restore_cache
+      - run: sbt +test:compile
+      - *use_save_cache
+      - persist_to_workspace:
+          root: *workspace_path
+          paths:
+            - project
+
+  test:
+    <<: *use_docker
+    steps:
+      - *use_workspace
+      - *use_restore_cache
+      - run: sbt +test
+
+  integration-test:
+    <<: *use_docker
+    steps:
+      - *use_workspace
+      - *use_restore_cache
+      - run: sbt +it:test
+
+  #publish:
+  #  <<: *use_docker
+  #  steps:
+  #    - *use_workspace
+  #    - *use_restore_cache
+  #    - run: sbt +publish
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - integration-test:
+          requires:
+            - build
+      #- publish:
+      #    requires:
+      #      - build
+      #    filters:
+      #      branches:
+      #        only: v0.0
