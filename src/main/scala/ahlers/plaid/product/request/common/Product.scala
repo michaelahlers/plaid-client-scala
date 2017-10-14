@@ -1,4 +1,4 @@
-package ahlers.plaid.product.common
+package ahlers.plaid.product.request.common
 
 import enumeratum._
 
@@ -8,7 +8,7 @@ import enumeratum._
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
 object Product extends Enum[Product] {
-	val values: _root_.scala.collection.immutable.IndexedSeq[_root_.ahlers.plaid.product.common.Product] = findValues
+	val values = findValues
 	case object Authentication extends Product
 	case object Balance extends Product
 	case object CreditDetails extends Product
