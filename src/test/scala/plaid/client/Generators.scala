@@ -27,16 +27,25 @@ object Generators {
 			for {
 				client <- Clients.gen
 				secret <- Arbitrary.arbString.arbitrary
-				public <- Gen.option(Arbitrary.arbString.arbitrary)
+				publicO <- Gen.option(Arbitrary.arbString.arbitrary)
 			} yield {
 				import Credential.Tags._
 
 				Credential(
 					client = client,
 					secret = secret.tagged[Key],
-					public = public.map(_.tagged[Key])
+					public = publicO.map(_.tagged[Key])
 				)
 			}
+	}
+
+	object CredentialProviders {
+		case class DirectCredentialProvider(credential: Option[Credential]) extends CredentialProvider
+
+		val gen: Gen[CredentialProvider] =
+			for {
+				credentialO <- Gen.option(Credentials.gen)
+			} yield DirectCredentialProvider(credentialO)
 	}
 
 }
