@@ -1,3 +1,4 @@
 /.idea
 /.sbtopts
+/local.sbt
 /target
