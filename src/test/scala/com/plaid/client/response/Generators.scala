@@ -4,6 +4,7 @@ import com.plaid.client.request.common.Generators.Products
 import org.mockito.Mockito._
 import org.scalacheck._
 import org.scalatest.mockito.MockitoSugar
+
 import scala.collection.convert.ImplicitConversions._
 
 /**
