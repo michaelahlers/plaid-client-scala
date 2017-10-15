@@ -1,6 +1,7 @@
-package ahlers.plaid.product.response
+package plaid.client.akka.response
 
 import ahlers.plaid.product.request.common
+import plaid.client.akka.request.common.Product
 import shapeless.tag._
 
 /**
@@ -51,5 +52,5 @@ case class Institution(
 	credentials: List[Institution.Credential],
 	hasMFA: Boolean,
 	MFAs: List[Institution.MFA],
-	products: List[common.Product]
+	products: List[Product]
 )

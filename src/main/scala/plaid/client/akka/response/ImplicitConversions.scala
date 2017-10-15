@@ -1,9 +1,8 @@
-package ahlers.plaid.product.response
+package plaid.client.akka.response
 
 import ahlers.plaid.product.request.common.ImplicitConversions._
-import ahlers.plaid.product.request.common.Product
 import ahlers.syntax.shapeless.tags._
-import com.plaid.client.{ response => plaid }
+import com.plaid.client.{response => plaid}
 
 import scala.collection.convert.ImplicitConversions._
 import scala.language.implicitConversions

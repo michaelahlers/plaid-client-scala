@@ -1,4 +1,4 @@
-package ahlers.plaid.product.request
+package plaid.client.akka.request
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>

@@ -1,7 +1,7 @@
 package ahlers.syntax
 
 /**
- * Syntactic sugars.
+ * Syntactic help for Shapeless.
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
 package object shapeless {

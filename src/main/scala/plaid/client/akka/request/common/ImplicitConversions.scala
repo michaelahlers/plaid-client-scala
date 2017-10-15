@@ -1,6 +1,6 @@
-package ahlers.plaid.product.request.common
+package plaid.client.akka.request.common
 
-import com.plaid.client.request.{ common => plaid }
+import com.plaid.client.request.{common => plaid}
 
 import scala.language.implicitConversions
 
