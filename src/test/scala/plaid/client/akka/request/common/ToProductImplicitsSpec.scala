@@ -19,6 +19,12 @@ class ToProductImplicitsSpec extends WordSpec
 			}
 		}
 
+		s"return ${classOf[reference.request.common.Product]} from ${classOf[Product]}" in {
+			forAll(Product.values) { sample =>
+				verifyReferenceProduct(sample, sample)
+			}
+		}
+
 	}
 
 }

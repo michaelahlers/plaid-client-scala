@@ -21,4 +21,14 @@ trait ReferenceComparisons { self: Suite =>
 			case TRANSACTIONS => actual should be(Transactions)
 		}
 
+	def verifyReferenceProduct(sample: Product, actual: reference.request.common.Product) =
+		sample match {
+			case Authentication => actual should be(AUTH)
+			case Balance => actual should be(BALANCE)
+			case CreditDetails => actual should be(CREDIT_DETAILS)
+			case Identity => actual should be(IDENTITY)
+			case Income => actual should be(INCOME)
+			case Transactions => actual should be(TRANSACTIONS)
+		}
+
 }
