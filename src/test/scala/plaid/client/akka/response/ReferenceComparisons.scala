@@ -14,8 +14,8 @@ import scala.language.postfixOps
  */
 trait ReferenceComparisons extends common.ReferenceComparisons { self: Suite =>
 
-	def verifyInstitutionCredential(expected: reference.response.Institution#Credential, actual: Institution.Credential) = {
-		import expected._
+	def verifyInstitutionCredential(sample: reference.response.Institution#Credential, actual: Institution.Credential) = {
+		import sample._
 		actual should have(
 			'label(getLabel),
 			'name(getName),
