@@ -5,7 +5,7 @@ use_docker: &use_docker
     - image: circleci/openjdk:9-jdk
 
 cache_key: &cache_key
-  v1-{{ arch }}-{{ checksum "dependencies.sbt" }}
+  v1-{{ arch }}-{{ checksum "dependencies.sbt" }}-{{ checksum "project/plugins.sbt" }}
   v1-
 
 use_restore_cache: &use_restore_cache
