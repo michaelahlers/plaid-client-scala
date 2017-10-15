@@ -17,6 +17,17 @@ object ImplicitConversions
 
 trait ToProductImplicits {
 
+	implicit def implyInstitutionCredential(c: reference.Institution#Credential): Institution.Credential = {
+		import Institution.Credential.Tags._
+		import c._
+
+		Institution.Credential(
+			label = getLabel.tagged[Label],
+			name = getName.tagged[Name],
+			typ = getType.tagged[Type]
+		)
+	}
+
 	implicit def implyInstitution(i: reference.Institution): Institution = {
 		import Institution.Tags._
 		import i._
@@ -24,19 +35,9 @@ trait ToProductImplicits {
 		Institution(
 			id = getInstitutionId.tagged[Id],
 			name = getName.tagged[Name],
-			credentials = getCredentials.toList map { c =>
-				import Institution.Credential
-				import Credential.Tags._
-				import c._
-
-				Credential(
-					label = getLabel.tagged[Label],
-					name = getName.tagged[Name],
-					`type` = getType.tagged[Type]
-				)
-			},
+			credentials = getCredentials.toList.map({ c => c: Institution.Credential }),
 			hasMFA = hasMfa,
-			MFAs = getMfa.toList.map(_.tagged[MFA]),
+			multiFactorAuthentications = getMfa.toList.map(_.tagged[MFA]),
 			products = getProducts.toList.map({ p => p: Product })
 		)
 	}

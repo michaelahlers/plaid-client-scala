@@ -40,7 +40,7 @@ object Institution {
 	case class Credential(
 		label: Credential.Label,
 		name: Credential.Name,
-		`type`: Credential.Type
+		typ: Credential.Type
 	)
 
 }
@@ -50,6 +50,6 @@ case class Institution(
 	name: Institution.Name,
 	credentials: List[Institution.Credential],
 	hasMFA: Boolean,
-	MFAs: List[Institution.MFA],
+	multiFactorAuthentications: List[Institution.MFA],
 	products: List[Product]
 )
