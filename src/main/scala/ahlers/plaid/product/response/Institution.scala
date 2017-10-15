@@ -4,6 +4,8 @@ import ahlers.plaid.product.request.common
 import shapeless.tag._
 
 /**
+ * @see [[com.plaid.client.response.Institution]]
+ *
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
 object Institution {
