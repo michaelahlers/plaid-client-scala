@@ -8,7 +8,7 @@ object ImplicitConversions
 	with ToReferenceImplicits
 
 trait ToProductImplicits
-	extends common.ToProductImplicits
+	extends common.FromReferenceImplicits
 
 trait ToReferenceImplicits
 	extends common.ToReferenceImplicits
