@@ -1,4 +1,4 @@
-package ahlers.syntax.shapeless
+package ahlers.plaid.syntax.shapeless
 
 import shapeless.tag
 import shapeless.tag._

@@ -1,4 +1,4 @@
-package ahlers.syntax
+package ahlers.plaid.syntax
 
 /**
  * Syntactic help for Shapeless.
