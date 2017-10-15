@@ -4,13 +4,17 @@ package plaid.client.akka
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
 object ImplicitConversions
-	extends ToProductImplicits
+	extends FromReferenceImplicits
 	with ToReferenceImplicits
 
-trait ToProductImplicits
-	extends request.ToProductImplicits
-	with response.ToProductImplicits
+trait FromReferenceImplicits
+	extends request.FromReferenceImplicits
+	with response.FromReferenceImplicits
+
+object FromReferenceImplicits extends FromReferenceImplicits
 
 trait ToReferenceImplicits
 	extends request.ToReferenceImplicits
 	with response.ToReferenceImplicits
+
+object ToReferenceImplicits extends ToReferenceImplicits

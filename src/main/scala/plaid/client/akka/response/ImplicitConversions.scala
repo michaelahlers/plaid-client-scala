@@ -13,10 +13,10 @@ import scala.language.implicitConversions
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
 object ImplicitConversions
-	extends ToProductImplicits
+	extends FromReferenceImplicits
 	with ToReferenceImplicits
 
-trait ToProductImplicits {
+trait FromReferenceImplicits {
 
 	implicit def implyInstitutionCredential(c: reference.Institution#Credential): Institution.Credential = {
 		import Institution.Credential.Tags._
@@ -45,4 +45,9 @@ trait ToProductImplicits {
 
 }
 
+object FromReferenceImplicits extends FromReferenceImplicits
+
 trait ToReferenceImplicits
+
+object ToReferenceImplicits extends ToReferenceImplicits
+
