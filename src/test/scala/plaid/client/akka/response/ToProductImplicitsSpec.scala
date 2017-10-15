@@ -16,6 +16,12 @@ class ToProductImplicitsSpec extends WordSpec
 
 	"Implicit conversion" must {
 
+		s"return ${classOf[Institution.Credential]} from ${classOf[reference.response.Institution#Credential]}" in {
+			forAllProp(reference.response.Generators.Institutions.Credentials.gen) { sample =>
+				verifyInstitutionCredential(sample, sample)
+			}
+		}
+
 		s"return ${classOf[Institution]} from ${classOf[reference.response.Institution]}" in {
 			forAllProp(reference.response.Generators.Institutions.gen) { sample =>
 				verifyInstitution(sample, sample)
