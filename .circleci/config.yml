@@ -56,12 +56,12 @@ jobs:
       - *use_restore_cache
       - run: sbt +it:test
 
-  #publish:
-  #  <<: *use_docker
-  #  steps:
-  #    - *use_workspace
-  #    - *use_restore_cache
-  #    - run: sbt +publish
+  publish:
+    <<: *use_docker
+    steps:
+      - *use_workspace
+      - *use_restore_cache
+      - run: sbt +publish
 
 workflows:
   version: 2
@@ -74,9 +74,9 @@ workflows:
       - integration-test:
           requires:
             - build
-      #- publish:
-      #    requires:
-      #      - build
-      #    filters:
-      #      branches:
-      #        only: v0.0
+      - publish:
+          requires:
+            - build
+          filters:
+            branches:
+              only: v0.0
