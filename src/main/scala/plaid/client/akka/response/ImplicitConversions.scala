@@ -13,7 +13,7 @@ import scala.language.implicitConversions
  */
 object ImplicitConversions
 	extends ToProductImplicits
-	with ToBeanImplicits
+	with ToReferenceImplicits
 
 trait ToProductImplicits {
 
@@ -44,6 +44,6 @@ trait ToProductImplicits {
 
 }
 
-trait ToBeanImplicits {
+trait ToReferenceImplicits {
 
 }

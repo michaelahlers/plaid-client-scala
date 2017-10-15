@@ -5,10 +5,10 @@ package plaid.client.akka.request
  */
 object ImplicitConversions
 	extends ToProductImplicits
-	with ToBeanImplicits
+	with ToReferenceImplicits
 
 trait ToProductImplicits
 	extends common.ToProductImplicits
 
-trait ToBeanImplicits
-	extends common.ToBeanImplicits
+trait ToReferenceImplicits
+	extends common.ToReferenceImplicits

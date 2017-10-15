@@ -9,7 +9,7 @@ import scala.language.implicitConversions
  */
 object ImplicitConversions
 	extends ToProductImplicits
-	with ToBeanImplicits
+	with ToReferenceImplicits
 
 trait ToProductImplicits {
 
@@ -28,7 +28,7 @@ trait ToProductImplicits {
 
 }
 
-trait ToBeanImplicits {
+trait ToReferenceImplicits {
 
 	implicit def implyProduct(v: Product): reference.Product = {
 		import reference.Product._
