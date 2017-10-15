@@ -1,7 +1,7 @@
 package plaid.client.akka.response
 
 import ahlers.plaid.syntax.shapeless.tags._
-import com.plaid.client.{ response => reference }
+import com.plaid.{ client => reference }
 import plaid.client.akka.request.common.ImplicitConversions._
 import plaid.client.akka.request.common.Product
 
@@ -18,7 +18,7 @@ object ImplicitConversions
 
 trait FromReferenceImplicits {
 
-	implicit def implyInstitutionCredential(c: reference.Institution#Credential): Institution.Credential = {
+	implicit def implyInstitutionCredential(c: reference.response.Institution#Credential): Institution.Credential = {
 		import Institution.Credential.Tags._
 		import c._
 
@@ -29,7 +29,7 @@ trait FromReferenceImplicits {
 		)
 	}
 
-	implicit def implyInstitution(i: reference.Institution): Institution = {
+	implicit def implyInstitution(i: reference.response.Institution): Institution = {
 		import Institution.Tags._
 		import i._
 
