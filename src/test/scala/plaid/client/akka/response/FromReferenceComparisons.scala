@@ -5,7 +5,8 @@ import org.scalatest.Inspectors._
 import org.scalatest.Matchers._
 import plaid.client.akka.request.common.FromReferenceComparisons._
 
-import scala.collection.convert.ImplicitConversions._
+/* TODO: Replace with ImplicitConversions when 2.11 is no longer supported. */
+import scala.collection.JavaConverters._
 import scala.language.postfixOps
 
 /**
@@ -30,9 +31,9 @@ trait FromReferenceComparisons {
 			'hasMFA(hasMfa)
 		)
 
-		forAll(getCredentials zip actual.credentials)(verifyInstitutionCredential _ tupled)
-		actual.multiFactorAuthentications should contain theSameElementsInOrderAs getMfa
-		forAll(getProducts zip actual.products)(verifyProduct _ tupled)
+		forAll(getCredentials.asScala zip actual.credentials)(verifyInstitutionCredential _ tupled)
+		actual.multiFactorAuthentications should contain theSameElementsInOrderAs getMfa.asScala
+		forAll(getProducts.asScala zip actual.products)(verifyProduct _ tupled)
 	}
 
 }

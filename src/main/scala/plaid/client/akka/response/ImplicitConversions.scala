@@ -5,7 +5,8 @@ import com.plaid.client.{ response => reference }
 import plaid.client.akka.request.common.ImplicitConversions._
 import plaid.client.akka.request.common.Product
 
-import scala.collection.convert.ImplicitConversions._
+/* TODO: Replace with ImplicitConversions when 2.11 is no longer supported. */
+import scala.collection.JavaConverters._
 import scala.language.implicitConversions
 
 /**
@@ -35,15 +36,13 @@ trait ToProductImplicits {
 		Institution(
 			id = getInstitutionId.tagged[Id],
 			name = getName.tagged[Name],
-			credentials = getCredentials.toList.map({ c => c: Institution.Credential }),
+			credentials = getCredentials.asScala.toList.map({ c => c: Institution.Credential }),
 			hasMFA = hasMfa,
-			multiFactorAuthentications = getMfa.toList.map(_.tagged[MFA]),
-			products = getProducts.toList.map({ p => p: Product })
+			multiFactorAuthentications = getMfa.asScala.toList.map(_.tagged[MFA]),
+			products = getProducts.asScala.toList.map({ p => p: Product })
 		)
 	}
 
 }
 
-trait ToReferenceImplicits {
-
-}
+trait ToReferenceImplicits

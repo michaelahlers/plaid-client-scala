@@ -5,7 +5,8 @@ import org.mockito.Mockito._
 import org.scalacheck._
 import org.scalatest.mockito.MockitoSugar
 
-import scala.collection.convert.ImplicitConversions._
+/* TODO: Replace with ImplicitConversions when 2.11 is no longer supported. */
+import scala.collection.JavaConverters._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
@@ -40,10 +41,10 @@ object Generators extends MockitoSugar {
 				val institution = mock[Institution]
 				when(institution.getInstitutionId).thenReturn(id)
 				when(institution.getName).thenReturn(name)
-				when(institution.getCredentials).thenReturn(credentials)
+				when(institution.getCredentials).thenReturn(credentials.asJava)
 				when(institution.hasMfa).thenReturn(hasMFA)
-				when(institution.getMfa).thenReturn(multiFactorAuthentications)
-				when(institution.getProducts).thenReturn(products)
+				when(institution.getMfa).thenReturn(multiFactorAuthentications.asJava)
+				when(institution.getProducts).thenReturn(products.asJava)
 				institution
 			}
 	}
