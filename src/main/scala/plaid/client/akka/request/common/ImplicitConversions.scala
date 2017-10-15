@@ -1,6 +1,6 @@
 package plaid.client.akka.request.common
 
-import com.plaid.client.request.{common => plaid}
+import com.plaid.client.request.{ common => reference }
 
 import scala.language.implicitConversions
 
@@ -13,8 +13,8 @@ object ImplicitConversions
 
 trait ToProductImplicits {
 
-	implicit def implyProduct(v: plaid.Product): Product = {
-		import plaid.Product._
+	implicit def implyProduct(v: reference.Product): Product = {
+		import reference.Product._
 
 		v match {
 			case AUTH => Product.Authentication
@@ -30,8 +30,8 @@ trait ToProductImplicits {
 
 trait ToBeanImplicits {
 
-	implicit def implyProduct(v: Product): plaid.Product = {
-		import plaid.Product._
+	implicit def implyProduct(v: Product): reference.Product = {
+		import reference.Product._
 		v match {
 			case Product.Authentication => AUTH
 			case Product.Balance => BALANCE

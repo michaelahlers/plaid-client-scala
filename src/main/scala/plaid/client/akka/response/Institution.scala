@@ -1,6 +1,5 @@
 package plaid.client.akka.response
 
-import ahlers.plaid.product.request.common
 import plaid.client.akka.request.common.Product
 import shapeless.tag._
 

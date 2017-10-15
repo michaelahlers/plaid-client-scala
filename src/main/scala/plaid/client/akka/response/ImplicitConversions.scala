@@ -1,8 +1,9 @@
 package plaid.client.akka.response
 
-import ahlers.plaid.product.request.common.ImplicitConversions._
-import ahlers.syntax.shapeless.tags._
-import com.plaid.client.{response => plaid}
+import ahlers.plaid.syntax.shapeless.tags._
+import com.plaid.client.{ response => reference }
+import plaid.client.akka.request.common.ImplicitConversions._
+import plaid.client.akka.request.common.Product
 
 import scala.collection.convert.ImplicitConversions._
 import scala.language.implicitConversions
@@ -16,7 +17,7 @@ object ImplicitConversions
 
 trait ToProductImplicits {
 
-	implicit def implyInstitution(i: plaid.Institution): Institution = {
+	implicit def implyInstitution(i: reference.Institution): Institution = {
 		import Institution.Tags._
 		import i._
 
