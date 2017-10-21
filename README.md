@@ -1,6 +1,6 @@
-# Plaid Client for Akka [![CircleCI][CircleCI Badge]][CircleCI Branch] [![Codacy][Codacy Grade Badge]][Codacy Grade Branch] [![Gitter][Gitter Badge]][Gitter Room]
+# Plaid Client for Scala [![CircleCI][CircleCI Badge]][CircleCI Branch] [![Codacy][Codacy Grade Badge]][Codacy Grade Branch] [![Gitter][Gitter Badge]][Gitter Room]
 
-Akka integration for Plaid's official Java client.
+Scala language bindings—including clients and models—for Plaid's services. Edit
 
 [CircleCI Badge]: https://img.shields.io/circleci/project/github/michaelahlers/plaid-client-akka/v0.0.svg
 [CircleCI Branch]: https://circleci.com/gh/michaelahlers/plaid-client-akka/tree/v0.0
