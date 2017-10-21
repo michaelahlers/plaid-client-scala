@@ -1,5 +1,5 @@
 name := "plaid-client-scala"
-description := "Akka integration for Plaid's official Java client."
+description := "Scala language bindings for Plaid's services."
 
 organization in ThisBuild := "consulting.ahlers"
 homepage in ThisBuild := None
