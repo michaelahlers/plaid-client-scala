@@ -1,9 +1,9 @@
-package plaid.client.akka.response
+package plaid.client.models.response
 
 import com.plaid.{ client => reference }
 import org.scalatest._
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import plaid.client.akka.response.ImplicitConversions._
+import plaid.client.models.response.ImplicitConversions._
 
 import scala.language.postfixOps
 

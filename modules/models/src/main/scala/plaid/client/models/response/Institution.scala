@@ -1,6 +1,6 @@
-package plaid.client.akka.response
+package plaid.client.models.response
 
-import plaid.client.akka.request.common.Product
+import plaid.client.models.request.common.Product
 import shapeless.tag._
 
 /**

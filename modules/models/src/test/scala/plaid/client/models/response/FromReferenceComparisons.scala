@@ -1,9 +1,9 @@
-package plaid.client.akka.response
+package plaid.client.models.response
 
 import com.plaid.{ client => reference }
 import org.scalatest.Inspectors._
 import org.scalatest.Matchers._
-import plaid.client.akka.request.common.FromReferenceComparisons._
+import plaid.client.models.request.common.FromReferenceComparisons._
 
 /* TODO: Replace with ImplicitConversions when 2.11 is no longer supported. */
 import scala.collection.JavaConverters._

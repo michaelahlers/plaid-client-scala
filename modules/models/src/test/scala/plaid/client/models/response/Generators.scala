@@ -1,8 +1,8 @@
-package plaid.client.akka.response
+package plaid.client.models.response
 
 import ahlers.plaid.syntax.shapeless.tags._
 import org.scalacheck._
-import plaid.client.akka.request.common
+import plaid.client.models.request.common
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>

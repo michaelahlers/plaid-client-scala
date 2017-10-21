@@ -1,9 +1,9 @@
-package plaid.client.akka.response
+package plaid.client.models.response
 
 import ahlers.plaid.syntax.shapeless.tags._
 import com.plaid.{ client => reference }
-import plaid.client.akka.request.common.ImplicitConversions._
-import plaid.client.akka.request.common.Product
+import plaid.client.models.request.common.ImplicitConversions._
+import plaid.client.models.request.common.Product
 
 /* TODO: Replace with ImplicitConversions when 2.11 is no longer supported. */
 import scala.collection.JavaConverters._

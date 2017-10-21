@@ -1,4 +1,4 @@
-package plaid.client.akka.request.common
+package plaid.client.models.request.common
 
 import enumeratum._
 

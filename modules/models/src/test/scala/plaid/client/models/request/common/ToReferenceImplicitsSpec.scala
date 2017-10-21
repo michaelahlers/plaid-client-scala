@@ -1,7 +1,7 @@
-package plaid.client.akka.request.common
+package plaid.client.models.request.common
 
 import org.scalatest._
-import plaid.client.akka.request.common.ToReferenceImplicits._
+import plaid.client.models.request.common.ToReferenceImplicits._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>

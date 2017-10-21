@@ -1,8 +1,8 @@
-package plaid.client.akka.request.common
+package plaid.client.models.request.common
 
 import com.plaid.{ client => reference }
 import org.scalatest._
-import plaid.client.akka.request.common.FromReferenceImplicits._
+import plaid.client.models.request.common.FromReferenceImplicits._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
