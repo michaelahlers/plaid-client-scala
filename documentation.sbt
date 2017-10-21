@@ -1,12 +1,12 @@
 /** See http://scala-sbt.org/0.13/docs/Howto-Scaladoc.html for details. */
-autoAPIMappings := true
+autoAPIMappings in ThisBuild := true
 
-scalacOptions in(Compile, doc) ++=
+scalacOptions in ThisBuild in(Compile, doc) ++=
 	"-no-link-warnings" ::
 		Nil
 
 /** See http://stackoverflow.com/a/35673212/700420 for details. */
-apiMappings ++= {
+apiMappings in ThisBuild ++= {
 	def mappingsFor(organization: String, names: List[String], location: String, revision: (String) => String = identity): Seq[(File, URL)] =
 		for {
 			entry: Attributed[File] <- (fullClasspath in Compile).value

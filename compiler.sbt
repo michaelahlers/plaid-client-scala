@@ -1,8 +1,8 @@
-crossScalaVersions := Seq("2.11.11", "2.12.3")
+crossScalaVersions in ThisBuild := Seq("2.11.11", "2.12.3")
 
-scalaVersion := "2.12.3"
+scalaVersion in ThisBuild := "2.12.3"
 
-scalacOptions := {
+scalacOptions in ThisBuild := {
 	scalafixScalacOptions.value ++
 		(CrossVersion.partialVersion(scalaVersion.value) match {
 
