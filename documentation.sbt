@@ -1,8 +1,12 @@
 /** See http://scala-sbt.org/0.13/docs/Howto-Scaladoc.html for details. */
 autoAPIMappings in ThisBuild := true
 
-scalacOptions in ThisBuild in(Compile, doc) ++=
+scalacOptions in ThisBuild in doc :=
 	"-no-link-warnings" ::
+		Nil
+
+javacOptions in ThisBuild in doc :=
+	"-linksource" ::
 		Nil
 
 /** See http://stackoverflow.com/a/35673212/700420 for details. */
