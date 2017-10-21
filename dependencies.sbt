@@ -1,3 +1,11 @@
+libraryDependencies ++=
+	"com.typesafe.akka" %% "akka-stream" % "2.5.6" % Provided ::
+		Nil
+
+libraryDependencies ++=
+	"com.typesafe.akka" %% "akka-stream-testkit" % "2.5.6" % Test ::
+		Nil
+
 libraryDependencies in ThisBuild ++=
 	"com.beachape" %% "enumeratum" % "1.5.12" ::
 		"com.chuusai" %% "shapeless" % "2.3.2" ::

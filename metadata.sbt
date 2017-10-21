@@ -1,5 +1,5 @@
 name := "plaid-client-scala"
-description := "Scala language bindings for Plaid's services."
+description := "Scala language bindings—including clients and models—for Plaid's services."
 
 organization in ThisBuild := "consulting.ahlers"
 organizationName in ThisBuild := "Ahlers Consulting"
