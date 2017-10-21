@@ -1,4 +1,4 @@
-package ahlers.plaid
+package plaid.client.support
 
 /**
  * Provides syntactic sugars.

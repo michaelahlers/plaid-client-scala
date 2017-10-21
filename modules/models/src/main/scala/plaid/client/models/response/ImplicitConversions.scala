@@ -1,6 +1,6 @@
 package plaid.client.models.response
 
-import ahlers.plaid.syntax.shapeless.tags._
+import plaid.client.support.syntax.shapeless.tags._
 import com.plaid.{ client => reference }
 import plaid.client.models.request.common.ImplicitConversions._
 import plaid.client.models.request.common.Product

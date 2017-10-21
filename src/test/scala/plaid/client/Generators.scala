@@ -1,6 +1,6 @@
 package plaid.client
 
-import ahlers.plaid.syntax.shapeless.tags._
+import plaid.client.support.syntax.shapeless.tags._
 import org.scalacheck._
 
 /**

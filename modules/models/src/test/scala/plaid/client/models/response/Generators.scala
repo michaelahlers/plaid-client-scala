@@ -1,6 +1,6 @@
 package plaid.client.models.response
 
-import ahlers.plaid.syntax.shapeless.tags._
+import plaid.client.support.syntax.shapeless.tags._
 import org.scalacheck._
 import plaid.client.models.request.common
 
