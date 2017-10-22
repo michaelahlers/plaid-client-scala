@@ -1,5 +1,6 @@
 libraryDependencies ++=
-	"com.typesafe.akka" %% "akka-stream" % "2.5.6" % Provided ::
+	"com.plaid" % "plaid-java" % "2.1.6" % Provided ::
+		"com.typesafe.akka" %% "akka-stream" % "2.5.6" % Provided ::
 		Nil
 
 libraryDependencies ++=
@@ -7,10 +8,7 @@ libraryDependencies ++=
 		Nil
 
 libraryDependencies in ThisBuild ++=
-	"com.beachape" %% "enumeratum" % "1.5.12" ::
-		"com.chuusai" %% "shapeless" % "2.3.2" ::
-		"com.plaid" % "plaid-java" % "2.1.6" ::
-		"org.scalactic" %% "scalactic" % "3.0.4" ::
+	"org.scalactic" %% "scalactic" % "3.0.4" ::
 		Nil
 
 libraryDependencies in ThisBuild ++=
