@@ -1,6 +1,6 @@
 # Plaid Client for Scala [![CircleCI][CircleCI Badge]][CircleCI Branch] [![Codacy][Codacy Grade Badge]][Codacy Grade Branch] [![Gitter][Gitter Badge]][Gitter Room]
 
-Scala language bindings—including clients and models—for Plaid's services. Edit
+Scala language bindings—including clients and models—for Plaid's services.
 
 ## See Also
 
