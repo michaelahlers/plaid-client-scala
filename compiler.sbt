@@ -23,7 +23,7 @@ scalacOptions in ThisBuild := {
 					"-Ywarn-dead-code" ::
 					"-Ywarn-numeric-widen" ::
 					// "-Ywarn-unused-import" ::
-					"-Ywarn-value-discard" ::
+					// "-Ywarn-value-discard" ::
 					Nil
 
 			/** See also [[https://tpolecat.github.io/2017/04/25/scalac-flags.html ''Recommended Scalac Flags for 2.12'']]. */
@@ -58,7 +58,7 @@ scalacOptions in ThisBuild := {
 					// "-Ywarn-unused:patvars" ::
 					// "-Ywarn-unused:privates" ::
 					"-Ywarn-unused:-imports" ::
-					"-Ywarn-value-discard" ::
+					// "-Ywarn-value-discard" ::
 					Nil
 
 			case _ =>
