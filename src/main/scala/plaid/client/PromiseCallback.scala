@@ -6,6 +6,7 @@ import plaid.client.PromiseCallback._
 import retrofit2.{ Call, Callback, Response }
 
 import scala.concurrent.Promise
+import scala.util.Try
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
@@ -24,12 +25,12 @@ case class PromiseCallback[Body](client: PlaidClient, promise: Promise[Result[Bo
 	override def onFailure(call: Call[Body], reason: Throwable) = promise.failure(reason)
 
 	override def onResponse(call: Call[Body], response: Response[Body]) =
-		promise success {
+		promise.complete(Try {
 			if (call.isCanceled) Cancellation
 			else {
 				if (response.isSuccessful) Success(response)
 				else Failure(client.parseError(response))
 			}
-		}
+		})
 
 }
