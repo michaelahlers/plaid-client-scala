@@ -9,6 +9,9 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import plaid.client.Credential
 import plaid.syntax.client.ToPlaidClientBuilderOps._
 
+import plaid.client.CredentialSpec.Generators._
+import plaid.client.CredentialProviderSpec.Generators._
+
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
@@ -33,13 +36,13 @@ class PlaidClientBuilderOpsSpec extends FlatSpec
 	}
 
 	it must "assign credential" in {
-		forAll(plaid.client.Generators.Credentials.gen) { credential =>
+		forAll(Credentials.gen) { credential =>
 			verifyCredential(credential, _.credential(credential))
 		}
 	}
 
 	it must "assign from provider" in {
-		forAll(plaid.client.Generators.CredentialProviders.gen) { provider =>
+		forAll(CredentialProviders.gen) { provider =>
 			provider.credential match {
 				case Some(credential) => verifyCredential(credential, _.credentialFrom(provider))
 				case None =>
