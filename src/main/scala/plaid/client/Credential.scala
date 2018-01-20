@@ -6,7 +6,6 @@ import shapeless.tag._
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
 object Credential {
-
 	object Tags {
 		trait Key
 	}
@@ -14,17 +13,14 @@ object Credential {
 	type Key = String @@ Tags.Key
 
 	object Client {
-
 		object Tags {
 			trait Id
 		}
 
 		type Id = String @@ Tags.Id
-
 	}
 
 	case class Client(id: Client.Id)
-
 }
 
 case class Credential(
