@@ -12,7 +12,7 @@ libraryDependencies in ThisBuild ++=
 		Nil
 
 libraryDependencies in ThisBuild ++=
-	"org.mockito" % "mockito-core" % "2.11.0" % Test ::
+	"com.github.alexarchambault" %% "scalacheck-shapeless_1.13" % "1.1.6" % Test ::
 		"org.scalacheck" %% "scalacheck" % "1.13.4" % Test ::
 		"org.scalamock" %% "scalamock-scalatest-support" % "3.6.0" % Test ::
 		"org.scalatest" %% "scalatest" % "3.0.4" % Test ::
