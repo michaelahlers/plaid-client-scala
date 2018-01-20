@@ -1,5 +1,8 @@
 package plaid.client
 
+import org.scalacheck.Arbitrary._
+import org.scalacheck.ScalacheckShapeless._
+import org.scalacheck._
 import plaid.client.support.syntax.shapeless.tags._
 
 /**
@@ -7,43 +10,33 @@ import plaid.client.support.syntax.shapeless.tags._
  */
 object CredentialSpec {
 
-	object Generators extends Generators
-	trait Generators {
-
-		import org.scalacheck._
-		import Arbitrary._
-		import Gen._
-
+	object Generators {
 		object Credentials {
 
 			object Clients {
 				import Credential.Client
-				import Client.Tags._
 
-				val gen: Gen[Client] =
-					for {
-						id <- identifier
-					} yield {
-						Client(
-							id = id.tagged[Id]
-						)
-					}
+				object Ids {
+					import Client.Tags._
+					val gen: Gen[Client.Id] = arbitrary[String].map(_.tagged[Id])
+				}
+
+				val gen: Gen[Client] = {
+					implicit val arbId = Arbitrary(Ids.gen)
+					arbitrary[Client]
+				}
 			}
 
-			val gen: Gen[Credential] =
-				for {
-					client <- Clients.gen
-					secret <- arbitrary[String]
-					publicO <- option(arbitrary[String])
-				} yield {
-					import Credential.Tags._
+			object Keys {
+				import Credential.Tags._
+				val gen: Gen[Credential.Key] = arbitrary[String].map(_.tagged[Key])
+			}
 
-					Credential(
-						client = client,
-						secret = secret.tagged[Key],
-						public = publicO.map(_.tagged[Key])
-					)
-				}
+			val gen: Gen[Credential] = {
+				implicit val arbKey = Arbitrary(Keys.gen)
+				implicit val arbClient = Arbitrary(Clients.gen)
+				arbitrary[Credential]
+			}
 
 		}
 	}
