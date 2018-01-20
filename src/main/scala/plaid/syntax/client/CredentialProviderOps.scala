@@ -9,6 +9,8 @@ import scala.language.implicitConversions
  */
 final case class CredentialProviderOps(self: CredentialProvider) extends AnyVal {
 	def |(tail: CredentialProvider): CredentialProvider = CredentialProviderChain(self, tail)
+	def isEmpty: Boolean = self.credential.isEmpty
+	def isDefined: Boolean = self.credential.isDefined
 }
 
 trait ToCredentialProviderOps {
