@@ -1,14 +1,14 @@
 lazy val models =
 	(project in file("modules") / "models")
-		.dependsOn(support)
+		.dependsOn(support % "test->test;compile->compile")
 
 lazy val support =
 	project in file("modules") / "support"
 
-lazy val `plaid-client-scala` =
+lazy val client =
 	(project in file("."))
 		.aggregate(models)
-		.dependsOn(support)
+		.dependsOn(support % "test->test;compile->compile")
 
 /* Enable integration tests. */
 configs(IntegrationTest)
