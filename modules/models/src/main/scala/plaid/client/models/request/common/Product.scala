@@ -7,6 +7,7 @@ import enumeratum._
  *
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
+sealed trait Product extends EnumEntry
 object Product extends Enum[Product] {
 	val values = findValues
 	case object Authentication extends Product
@@ -16,5 +17,3 @@ object Product extends Enum[Product] {
 	case object Income extends Product
 	case object Transactions extends Product
 }
-
-sealed trait Product extends EnumEntry
