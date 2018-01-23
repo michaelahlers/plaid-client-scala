@@ -36,7 +36,8 @@ jobs:
     <<: *use_docker
     steps:
       - checkout
-      - run: find . \( -name "dependencies.sbt" -o -name "plugins.sbt" \) -exec shasum {} \; > checksums
+      - run: shopt -s globstar
+      - run: shasum **/dependencies.sbt project/plugins.sbt > checksums
       - *use_restore_cache
       - run: sbt ';+test:compile;+it:compile'
       - *use_save_cache
