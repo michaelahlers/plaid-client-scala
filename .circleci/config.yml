@@ -50,7 +50,7 @@ jobs:
     steps:
       - *use_workspace
       - *use_restore_cache
-      - run: sbt +test
+      - run: sbt -mem 2048 +test
 
   integration-test:
     <<: *use_docker
