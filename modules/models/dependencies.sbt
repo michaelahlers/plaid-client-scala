@@ -1,5 +1,5 @@
 libraryDependencies ++=
-	"com.plaid" % "plaid-java" % "2.1.6" % Provided ::
+	"com.plaid" % "plaid-java" % "2.2.0" % Provided ::
 		Nil
 
 libraryDependencies ++=
