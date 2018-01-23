@@ -4,6 +4,7 @@ use_docker: &use_docker
   docker:
     - image: circleci/openjdk:9-jdk
 
+# See https://discuss.circleci.com/t/wildcard-pattern-cache-directories/5159/4 for details.
 cache_key: &cache_key
   v1-{{ arch }}-{{ checksum "checksums" }}
   v1-
