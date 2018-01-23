@@ -5,7 +5,7 @@ use_docker: &use_docker
     - image: circleci/openjdk:9-jdk
 
 cache_key: &cache_key
-  v1-{{ arch }}-{{ checksum "dependencies.sbt" }}-{{ checksum "project/plugins.sbt" }}
+  v1-{{ arch }}-{{ checksum "checksums" }}
   v1-
 
 use_restore_cache: &use_restore_cache
@@ -35,6 +35,7 @@ jobs:
     <<: *use_docker
     steps:
       - checkout
+      - run: shasum **/dependencies.sbt **/plugins.sbt > checksums
       - *use_restore_cache
       - run: sbt ';+test:update;+it:update'
       - *use_save_cache
