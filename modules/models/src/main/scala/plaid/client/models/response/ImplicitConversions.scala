@@ -1,9 +1,10 @@
 package plaid.client.models.response
 
-import plaid.client.support.syntax.shapeless.tags._
-import com.plaid.{ client => reference }
+import com.plaid.client.response.{ Institution => ReferenceInstitution }
 import plaid.client.models.request.common.ImplicitConversions._
 import plaid.client.models.request.common.Product
+import plaid.client.models.response.Institution.Credential
+import plaid.client.support.syntax.shapeless.tags._
 
 /* TODO: Replace with ImplicitConversions when 2.11 is no longer supported. */
 import scala.collection.JavaConverters._
@@ -14,14 +15,13 @@ import scala.language.implicitConversions
  */
 object ImplicitConversions
 	extends FromReferenceImplicits
-	with ToReferenceImplicits
 
+object FromReferenceImplicits extends FromReferenceImplicits
 trait FromReferenceImplicits {
 
-	implicit def implyInstitutionCredential(c: reference.response.Institution#Credential): Institution.Credential = {
+	implicit def implyInstitutionCredential(c: ReferenceInstitution#Credential): Credential = {
 		import Institution.Credential.Tags._
 		import c._
-
 		Institution.Credential(
 			label = getLabel.tagged[Label],
 			name = getName.tagged[Name],
@@ -29,25 +29,16 @@ trait FromReferenceImplicits {
 		)
 	}
 
-	implicit def implyInstitution(i: reference.response.Institution): Institution = {
+	implicit def implyInstitution(i: ReferenceInstitution): Institution = {
 		import Institution.Tags._
-		import i._
-
 		Institution(
-			id = getInstitutionId.tagged[Id],
-			name = getName.tagged[Name],
-			credentials = getCredentials.asScala.toList.map({ c => c: Institution.Credential }),
-			hasMFA = hasMfa,
-			multiFactorAuthentications = getMfa.asScala.toList.map(_.tagged[MFA]),
-			products = getProducts.asScala.toList.map({ p => p: Product })
+			id = i.getInstitutionId.tagged[Id],
+			name = i.getName.tagged[Name],
+			credentials = i.getCredentials.asScala.toList map { c => c: Credential },
+			hasMFA = i.hasMfa,
+			multiFactorAuthentications = i.getMfa.asScala.toList.map(_.tagged[MFA]),
+			products = i.getProducts.asScala.toList.map({ p => p: Product })
 		)
 	}
 
 }
-
-object FromReferenceImplicits extends FromReferenceImplicits
-
-trait ToReferenceImplicits
-
-object ToReferenceImplicits extends ToReferenceImplicits
-
