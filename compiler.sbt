@@ -27,7 +27,8 @@ scalacOptions in ThisBuild := {
 					"-Xcheckinit" ::
 					"-Xfatal-warnings" ::
 					// "-Xfuture" ::
-					"-Xlint" ::
+					// "-Xlint" ::
+					"-Xlint:-unused,_" ::
 					"-Yno-adapted-args" ::
 					"-Ypartial-unification" ::
 					"-Ywarn-dead-code" ::
@@ -43,7 +44,6 @@ scalacOptions in ThisBuild := {
 					// "-Ywarn-unused:params" ::
 					// "-Ywarn-unused:patvars" ::
 					// "-Ywarn-unused:privates" ::
-					"-Ywarn-unused:-imports" ::
 					// "-Ywarn-value-discard" ::
 					Nil
 
