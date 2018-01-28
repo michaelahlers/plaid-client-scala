@@ -57,7 +57,7 @@ jobs:
     steps:
       - *use_workspace
       - *use_restore_cache
-      - run: sbt +it:test
+      - run: sbt -mem 2048 +it:test
 
   publish:
     <<: *use_docker
