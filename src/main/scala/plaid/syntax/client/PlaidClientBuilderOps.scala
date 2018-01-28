@@ -10,7 +10,7 @@ import scala.language.implicitConversions
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-case class PlaidClientBuilderOps(builder: Builder) extends AnyVal {
+final class PlaidClientBuilderOps(val builder: Builder) extends AnyVal {
 
 	def publicKey(key: Option[Key]): Builder =
 		key.map(builder.publicKey)
@@ -33,7 +33,7 @@ case class PlaidClientBuilderOps(builder: Builder) extends AnyVal {
 }
 
 trait ToPlaidClientBuilderOps {
-	implicit def implyPlaidClientBuilderOps(b: Builder): PlaidClientBuilderOps = PlaidClientBuilderOps(b)
+	implicit def implyPlaidClientBuilderOps(b: Builder): PlaidClientBuilderOps = new PlaidClientBuilderOps(b)
 }
 
 object ToPlaidClientBuilderOps extends ToPlaidClientBuilderOps
