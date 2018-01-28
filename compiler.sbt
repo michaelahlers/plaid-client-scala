@@ -10,20 +10,6 @@ scalacOptions in ThisBuild := {
 			case Some((2, 11)) =>
 				"-encoding" :: "UTF-8" ::
 					"-target:jvm-1.8" ::
-					"-deprecation" ::
-					"-feature" ::
-					"-language:existentials" ::
-					"-language:higherKinds" ::
-					"-language:implicitConversions" ::
-					"-unchecked" ::
-					"-Xfatal-warnings" ::
-					// "-Xfuture"::
-					"-Xlint" ::
-					"-Yno-adapted-args" ::
-					"-Ywarn-dead-code" ::
-					"-Ywarn-numeric-widen" ::
-					// "-Ywarn-unused-import" ::
-					// "-Ywarn-value-discard" ::
 					Nil
 
 			/** See also [[https://tpolecat.github.io/2017/04/25/scalac-flags.html ''Recommended Scalac Flags for 2.12'']]. */
