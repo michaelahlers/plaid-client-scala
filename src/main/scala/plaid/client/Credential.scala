@@ -32,4 +32,5 @@ object Credential {
 	case class Client(id: Client.Id)
 
 	def apply(client: Credential.Client, secret: Credential.Key): Credential = Credential(client, secret, None)
+	def apply(client: Credential.Client, secret: Credential.Key, public: Credential.Key): Credential = Credential(client, secret, Some(public))
 }
