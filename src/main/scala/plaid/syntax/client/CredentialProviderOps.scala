@@ -1,6 +1,7 @@
 package plaid.syntax.client
 
-import plaid.client.{ CredentialProvider, CredentialProviderChain }
+import plaid.client.CredentialProvider
+import plaid.syntax.client.CredentialProviderOps.Chain
 
 import scala.language.implicitConversions
 
@@ -8,9 +9,15 @@ import scala.language.implicitConversions
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
 final class CredentialProviderOps(val self: CredentialProvider) extends AnyVal {
-	def |(tail: CredentialProvider): CredentialProvider = CredentialProviderChain(self, tail)
+	def |(tail: CredentialProvider): CredentialProvider = Chain(self, tail)
 	def isEmpty: Boolean = self.credential.isEmpty
 	def isDefined: Boolean = self.credential.isDefined
+}
+
+object CredentialProviderOps {
+	private case class Chain(head: CredentialProvider, tail: CredentialProvider) extends CredentialProvider {
+		override def credential = head.credential orElse tail.credential
+	}
 }
 
 trait ToCredentialProviderOps {

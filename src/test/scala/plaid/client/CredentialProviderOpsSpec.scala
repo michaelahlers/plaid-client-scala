@@ -10,9 +10,9 @@ import plaid.syntax.client.credentialProviders._
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-class CredentialProviderChainSpec extends WordSpec with Matchers {
-	"Chain" must {
-		"provide first available credential" in {
+class CredentialProviderOpsSpec extends WordSpec with Matchers {
+	"Chained credentials" must {
+		"provide first available" in {
 			forAll(nonEmptyListOf(CredentialProviders.gen)) { providers =>
 				val exemplar = providers.flatMap(_.credential).headOption
 				val chain = providers.reduce(_ | _)
