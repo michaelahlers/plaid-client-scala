@@ -5,7 +5,7 @@ import scala.language.{dynamics, implicitConversions}
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-final class ReflectionOps[A <: AnyRef](val self: A) extends AnyVal {
+final class FieldOps[A <: AnyRef](val self: A) extends AnyVal {
 
 	def get[B](name: Symbol): B =
 		self synchronized {
@@ -24,6 +24,6 @@ final class ReflectionOps[A <: AnyRef](val self: A) extends AnyVal {
 
 }
 
-trait ToReflectionOps {
-	implicit def implyReflectionOps[A <: AnyRef](t: A): ReflectionOps[A] = new ReflectionOps(t)
+trait ToFieldOps {
+	implicit def implyReflectionOps[A <: AnyRef](t: A): FieldOps[A] = new FieldOps(t)
 }
