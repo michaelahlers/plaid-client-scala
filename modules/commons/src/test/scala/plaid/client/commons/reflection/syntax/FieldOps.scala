@@ -1,6 +1,6 @@
 package plaid.client.commons.reflection.syntax
 
-import scala.language.{dynamics, implicitConversions}
+import scala.language.{ dynamics, implicitConversions }
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
