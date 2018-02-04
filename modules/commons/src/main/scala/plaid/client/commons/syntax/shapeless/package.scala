@@ -1,4 +1,4 @@
-package plaid.client.support.syntax
+package plaid.client.commons.syntax
 
 /**
  * Syntactic help for Shapeless.

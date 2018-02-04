@@ -9,7 +9,7 @@ import org.scalatest.Matchers._
 import plaid.client.CredentialSpec.Generators._
 import org.scalatest.prop.GeneratorDrivenPropertyChecks._
 import plaid.client.CredentialProviderSpec.Generators
-import plaid.client.support.syntax.shapeless.tags._
+import plaid.client.commons.syntax.shapeless.tags._
 import shapeless.tag._
 import CredentialSpec.Generators._
 import org.scalamock.scalatest.MockFactory

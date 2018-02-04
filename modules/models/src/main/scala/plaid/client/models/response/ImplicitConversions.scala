@@ -4,7 +4,7 @@ import com.plaid.client.response.{ Institution => ReferenceInstitution }
 import plaid.client.models.request.common.ImplicitConversions._
 import plaid.client.models.request.common.Product
 import plaid.client.models.response.Institution.Credential
-import plaid.client.support.syntax.shapeless.tags._
+import plaid.client.commons.syntax.shapeless.tags._
 
 /* TODO: Replace with ImplicitConversions when 2.11 is no longer supported. */
 import scala.collection.JavaConverters._

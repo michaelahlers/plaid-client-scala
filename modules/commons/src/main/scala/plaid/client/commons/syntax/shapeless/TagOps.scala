@@ -1,4 +1,4 @@
-package plaid.client.support.syntax.shapeless
+package plaid.client.commons.syntax.shapeless
 
 import shapeless.tag
 import shapeless.tag._
