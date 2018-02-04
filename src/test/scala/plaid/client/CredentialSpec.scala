@@ -3,7 +3,9 @@ package plaid.client
 import org.scalacheck.Arbitrary._
 import org.scalacheck.ScalacheckShapeless._
 import org.scalacheck._
-import plaid.client.support.syntax.shapeless.tags._
+import plaid.client.Credential.Client._
+import plaid.client.Credential._
+import shapeless.tag._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
@@ -17,8 +19,7 @@ object CredentialSpec {
 				import Credential.Client
 
 				object Ids {
-					import Client.Tags._
-					val gen: Gen[Client.Id] = arbitrary[String].map(_.tagged[Id])
+					val gen: Gen[String @@ Id] = arbitrary[String].map(Id(_))
 				}
 
 				val gen: Gen[Client] = {
@@ -28,8 +29,7 @@ object CredentialSpec {
 			}
 
 			object Keys {
-				import Credential.Tags._
-				val gen: Gen[Credential.Key] = arbitrary[String].map(_.tagged[Key])
+				val gen: Gen[String @@ Key] = arbitrary[String].map(Key(_))
 			}
 
 			val gen: Gen[Credential] = {

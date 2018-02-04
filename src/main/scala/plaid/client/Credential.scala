@@ -2,36 +2,24 @@ package plaid.client
 
 import plaid.client.Credential.Client._
 import plaid.client.Credential._
-import plaid.client.support.syntax.shapeless.tags._
+import plaid.client.commons.shapeless._
 import shapeless.tag._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-case class Credential(client: Client, secret: Key, public: Option[Key])
+case class Credential(client: Client, secret: String @@ Key, public: Option[String @@ Key])
 object Credential {
-	object Tags {
-		trait Key
-	}
-
-	type Key = String @@ Tags.Key
-	object Key {
-		def apply(v: String): Key = v.tagged[Tags.Key]
-	}
+	trait Key
+	object Key extends TaggerCompanion[String, Key]
 
 	object Client {
-		object Tags {
-			trait Id
-		}
-
-		type Id = String @@ Tags.Id
-		object Id {
-			def apply(v: String): Id = v.tagged[Tags.Id]
-		}
+		trait Id
+		object Id extends TaggerCompanion[String, Id]
 	}
 
-	case class Client(id: Id)
+	case class Client(id: String @@ Id)
 
-	def apply(client: Client, secret: Key): Credential = Credential(client, secret, None)
-	def apply(client: Client, secret: Key, public: Key): Credential = Credential(client, secret, Some(public))
+	def apply(client: Client, secret: String @@ Key): Credential = Credential(client, secret, None)
+	def apply(client: Client, secret: String @@ Key, public: String @@ Key): Credential = Credential(client, secret, Some(public))
 }

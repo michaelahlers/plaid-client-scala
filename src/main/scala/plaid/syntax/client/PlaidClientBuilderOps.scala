@@ -4,6 +4,7 @@ import com.plaid.client.PlaidClient.Builder
 import plaid.client.Credential.Key
 import plaid.client.{ Credential, CredentialProvider }
 import plaid.syntax.client.ToPlaidClientBuilderOps._
+import shapeless.tag._
 
 import scala.language.implicitConversions
 
@@ -12,7 +13,7 @@ import scala.language.implicitConversions
  */
 final class PlaidClientBuilderOps(val builder: Builder) extends AnyVal {
 
-	def publicKey(key: Option[Key]): Builder =
+	def publicKey(key: Option[String @@ Key]): Builder =
 		key.map(builder.publicKey)
 			.getOrElse(builder)
 
