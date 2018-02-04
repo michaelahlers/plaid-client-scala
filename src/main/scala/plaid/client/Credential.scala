@@ -1,12 +1,14 @@
 package plaid.client
 
+import plaid.client.Credential.Client._
+import plaid.client.Credential._
 import plaid.client.support.syntax.shapeless.tags._
 import shapeless.tag._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-case class Credential(client: Credential.Client, secret: Credential.Key, public: Option[Credential.Key])
+case class Credential(client: Client, secret: Key, public: Option[Key])
 object Credential {
 	object Tags {
 		trait Key
@@ -26,11 +28,10 @@ object Credential {
 		object Id {
 			def apply(v: String): Id = v.tagged[Tags.Id]
 		}
-
 	}
 
-	case class Client(id: Client.Id)
+	case class Client(id: Id)
 
-	def apply(client: Credential.Client, secret: Credential.Key): Credential = Credential(client, secret, None)
-	def apply(client: Credential.Client, secret: Credential.Key, public: Credential.Key): Credential = Credential(client, secret, Some(public))
+	def apply(client: Client, secret: Key): Credential = Credential(client, secret, None)
+	def apply(client: Client, secret: Key, public: Key): Credential = Credential(client, secret, Some(public))
 }
