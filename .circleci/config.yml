@@ -51,6 +51,10 @@ jobs:
       - *use_workspace
       - *use_restore_cache
       - run: sbt -mem 2048 +test
+      - store_test_results:
+          path: target/test-reports/
+      - store_test_results:
+          path: modules/models/target/test-reports/
 
   integration-test:
     <<: *use_docker
