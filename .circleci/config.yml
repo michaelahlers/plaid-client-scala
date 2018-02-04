@@ -62,6 +62,10 @@ jobs:
       - *use_workspace
       - *use_restore_cache
       - run: sbt -mem 2048 +it:test
+      - store_test_results:
+          path: target/test-reports/
+      - store_test_results:
+          path: modules/models/target/test-reports/
 
   publish:
     <<: *use_docker
