@@ -2,12 +2,11 @@ package plaid.client
 
 import plaid.client.Credential.Client._
 import plaid.client.Credential._
+import plaid.client.CredentialProvider.Named._
 import plaid.client.commons.shapeless.TaggerCompanion
 import shapeless.tag._
-import plaid.client.CredentialProvider.Named._
 
 import scala.collection.Map
-import scala.sys.SystemProperties
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>

@@ -1,7 +1,7 @@
 package plaid.client.commons.shapeless
 
-import shapeless.tag._
 import plaid.client.commons.syntax.shapeless.tags._
+import shapeless.tag._
 
 /**
  *

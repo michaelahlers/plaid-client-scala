@@ -1,11 +1,11 @@
 package plaid.client.models.request.common
 
+import com.plaid.client.request.common.Product._
 import com.plaid.client.request.common.{ Product => ReferenceProduct }
+import org.scalatest.Inspectors._
+import org.scalatest.Matchers._
 import org.scalatest._
 import plaid.client.models.request.common.ImplicitConversions._
-import Matchers._
-import Inspectors._
-import com.plaid.client.request.common.Product._
 import plaid.client.models.request.common.Product._
 
 /**

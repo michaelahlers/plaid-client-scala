@@ -1,18 +1,14 @@
 package plaid.client
 
-import org.scalacheck._
-import org.scalacheck.Gen._
 import org.scalacheck.Arbitrary._
+import org.scalacheck.Gen._
 import org.scalacheck.ScalacheckShapeless._
-import org.scalatest._
-import org.scalatest.Matchers._
-import plaid.client.CredentialSpec.Generators._
-import org.scalatest.prop.GeneratorDrivenPropertyChecks._
-import plaid.client.CredentialProviderSpec.Generators
-import plaid.client.commons.syntax.shapeless.tags._
-import shapeless.tag._
-import CredentialSpec.Generators._
+import org.scalacheck._
 import org.scalamock.scalatest.MockFactory
+import org.scalatest.Matchers._
+import org.scalatest._
+import org.scalatest.prop.GeneratorDrivenPropertyChecks._
+import plaid.client.CredentialSpec.Generators._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
@@ -40,9 +36,7 @@ class CredentialProviderSpec extends WordSpec with MockFactory {
 	}
 
 	"Named" must {
-		import CredentialProvider.systemProperties
-		import CredentialProvider.environmentVariables
-		import CredentialProvider.Named
+		import CredentialProvider.{ Named, environmentVariables, systemProperties }
 		import Named._
 
 		"specify correct names and values" when {
