@@ -39,6 +39,16 @@ class CredentialProviderSpec extends WordSpec with MockFactory {
 		import CredentialProvider.{ Named, environmentVariables, systemProperties }
 		import Named._
 
+		implicit val arbName = Arbitrary {
+			for {
+				clientId <- arbitrary[String]
+				secretKey <- arbitrary[String]
+				publicKey <- arbitrary[String]
+				if clientId.trim.nonEmpty && secretKey.trim.nonEmpty && publicKey.trim.nonEmpty
+				if 3 == Set(clientId, secretKey, publicKey).size
+			} yield Names(Name(clientId), Name(secretKey), Name(publicKey))
+		}
+
 		"specify correct names and values" when {
 			"providing system properties" in {
 				systemProperties should have(
@@ -63,15 +73,6 @@ class CredentialProviderSpec extends WordSpec with MockFactory {
 		}
 
 		"provide equivalent credential" in {
-			implicit val arbName = Arbitrary {
-				for {
-					clientId <- arbitrary[String]
-					secretKey <- arbitrary[String]
-					publicKey <- arbitrary[String]
-					if 3 == Set(clientId, secretKey, publicKey).size
-				} yield Names(Name(clientId), Name(secretKey), Name(publicKey))
-			}
-
 			forAll { (names: Names, credential: Credential) =>
 				val provider = Named(names, {
 					val values =
@@ -85,7 +86,27 @@ class CredentialProviderSpec extends WordSpec with MockFactory {
 
 				provider.credential should contain(credential)
 			}
+		}
 
+		"provide nothing" when {
+			"missing required values" in {
+				/* Using implicit arbitrary syntax always fails here; fix by providing explicit generator. */
+				forAll(arbitrary[Names], option(arbitrary[String]), option(arbitrary[String]), option(arbitrary[String])) { (names, clientId, secretKey, publicKey) =>
+					whenever(clientId.isEmpty || secretKey.isEmpty) {
+						val provider = Named(names, {
+							val values =
+								clientId.map(names.clientId -> _) ::
+									secretKey.map(names.secretKey -> _) ::
+									publicKey.map(names.publicKey -> _) ::
+									Nil
+
+							values.flatten.toMap[String, String]
+						})
+
+						provider.credential should be(empty)
+					}
+				}
+			}
 		}
 
 	}
