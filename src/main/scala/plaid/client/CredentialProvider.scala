@@ -32,7 +32,8 @@ object CredentialProvider {
 			for {
 				clientId <- values.get(names.clientId)
 				secretKey <- values.get(names.secretKey)
-			} yield Credential(Client(Id(clientId)), Key(secretKey), values.get(names.publicKey).map(Key(_)))
+				publicKey = values.get(names.publicKey).map(Key(_))
+			} yield Credential(Client(Id(clientId)), Key(secretKey), publicKey)
 	}
 
 	val systemProperties: CredentialProvider = Named(Names(Name("plaid.client.id"), Name("plaid.secret.key"), Name("plaid.public.key")), sys.props)
