@@ -36,7 +36,7 @@ jobs:
     <<: *use_docker
     steps:
       - checkout
-      - run: shopt -s globstar && shasum **/dependencies.sbt project/* > checksums
+      - run: git ls-tree HEAD **/dependencies.sbt project/* > checksums
       - *use_restore_cache
       - run: sbt ';+test:compile;+it:compile'
       - *use_save_cache
