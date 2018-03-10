@@ -2,8 +2,8 @@ package plaid.client.syntax
 
 import com.plaid.client.PlaidClient.Builder
 import plaid.client.Credential.Key
+import plaid.client.syntax.ToPlaidClientBuilderOps._
 import plaid.client.{ Credential, CredentialProvider }
-import ToPlaidClientBuilderOps._
 import shapeless.tag._
 
 import scala.language.implicitConversions
