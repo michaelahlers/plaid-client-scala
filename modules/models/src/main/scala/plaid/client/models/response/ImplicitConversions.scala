@@ -19,9 +19,9 @@ object ImplicitConversions
 object FromReferenceImplicits extends FromReferenceImplicits
 trait FromReferenceImplicits {
 
-	implicit def implyInstitutionCredential(c: ReferenceInstitution#Credential): Credential = {
+	implicit def implyInstitutionCredential(v: ReferenceInstitution#Credential): Credential = {
 		import Institution.Credential.Tags._
-		import c._
+		import v._
 		Institution.Credential(
 			label = getLabel.tagged[Label],
 			name = getName.tagged[Name],
@@ -29,15 +29,15 @@ trait FromReferenceImplicits {
 		)
 	}
 
-	implicit def implyInstitution(i: ReferenceInstitution): Institution = {
+	implicit def implyInstitution(v: ReferenceInstitution): Institution = {
 		import Institution.Tags._
 		Institution(
-			id = i.getInstitutionId.tagged[Id],
-			name = i.getName.tagged[Name],
-			credentials = i.getCredentials.asScala.toList map { c => c: Credential },
-			hasMFA = i.hasMfa,
-			multiFactorAuthentications = i.getMfa.asScala.toList.map(_.tagged[MFA]),
-			products = i.getProducts.asScala.toList.map({ p => p: Product })
+			id = v.getInstitutionId.tagged[Id],
+			name = v.getName.tagged[Name],
+			credentials = v.getCredentials.asScala.toList map { c => c: Credential },
+			hasMFA = v.hasMfa,
+			multiFactorAuthentications = v.getMfa.asScala.toList.map(_.tagged[MFA]),
+			products = v.getProducts.asScala.toList.map({ p => p: Product })
 		)
 	}
 
