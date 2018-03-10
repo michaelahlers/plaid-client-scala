@@ -17,7 +17,11 @@ import scala.language.implicitConversions
 trait MatcherInstances {
 
 	/**
-	 * While ScalaTest provides helpful tools like [[org.scalatest.PrivateMethodTester]] for testing non-public interfaces, it offers no such feature for testing non-public fields. Augments the arbitrary property matching syntax by reading any non-public declared field on the object under test. */
+	 * While ScalaTest provides helpful tools like [[org.scalatest.PrivateMethodTester]] for testing non-public interfaces, it offers no such feature for testing non-public fields. Augments the arbitrary property matching syntax by reading any non-public declared field on the object under test.
+	 *
+	 * @see [[http://scalatest.org/user_guide/using_matchers#checkingArbitraryProperties ''Using matchers'']]
+	 * @see [[org.scalatest.Matchers.convertSymbolToHavePropertyMatcherGenerator]]
+	 */
 	implicit def implyPrivatePropertyMatcher(field: Symbol @@ Private)(implicit position: Position): Any => HavePropertyMatcher[AnyRef, Any] = { expectedValue =>
 		/* TODO: Use SAM if (when) this project removes support for Scala 2.11. */
 		new HavePropertyMatcher[AnyRef, Any] {
