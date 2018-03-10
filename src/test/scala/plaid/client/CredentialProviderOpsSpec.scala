@@ -5,7 +5,7 @@ import org.scalacheck.ScalacheckShapeless._
 import org.scalatest._
 import org.scalatest.prop.GeneratorDrivenPropertyChecks._
 import plaid.client.CredentialProviderSpec.Generators._
-import plaid.syntax.client.credentialProviders._
+import plaid.client.syntax.credentials._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>

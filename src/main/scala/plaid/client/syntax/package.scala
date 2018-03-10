@@ -5,9 +5,10 @@ package plaid.client
  */
 package object syntax {
 
-	object clientBuilders extends ToPlaidClientBuilderOps
+	object clients extends ToPlaidClientBuilderOps
 
-	object credentials extends ToCredentialOps
-	object credentialProviders extends ToCredentialProviderOps
+	object credentials
+		extends ToCredentialOps
+		with ToCredentialProviderOps
 
 }
