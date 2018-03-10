@@ -32,7 +32,7 @@ trait MatcherInstances {
 					case Some(f) if Modifier.isPublic(f.getModifiers) => throw new TestFailedException((_: StackDepthException) => Some(s"""Field "${field.name} was public (had modifiers: ${Modifier.toString(f.getModifiers).replace(" ", ", ")}); prefer default property matching syntax for these."."""), None, position)
 
 					case Some(_) =>
-						val actualValue = objectUnderTest.get[Any](field)
+						val actualValue = objectUnderTest.get(field)
 						new HavePropertyMatchResult(
 							actualValue == expectedValue,
 							field.name,
