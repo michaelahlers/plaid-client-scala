@@ -1,7 +1,7 @@
-package plaid.syntax.client
+package plaid.client.syntax
 
 import plaid.client.CredentialProvider
-import plaid.syntax.client.CredentialProviderOps.Chain
+import CredentialProviderOps.Chain
 
 import scala.language.implicitConversions
 

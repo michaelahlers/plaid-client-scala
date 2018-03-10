@@ -1,4 +1,4 @@
-package plaid.syntax.client
+package plaid.client.syntax
 
 import com.plaid.client.PlaidClient.Builder
 import org.mockito.ArgumentMatchers._
@@ -9,7 +9,7 @@ import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import plaid.client.Credential
 import plaid.client.CredentialProviderSpec.Generators._
 import plaid.client.CredentialSpec.Generators._
-import plaid.syntax.client.ToPlaidClientBuilderOps._
+import ToPlaidClientBuilderOps._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>

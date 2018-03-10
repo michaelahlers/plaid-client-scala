@@ -1,9 +1,9 @@
-package plaid.syntax
+package plaid.client
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-package object client {
+package object syntax {
 
 	object clientBuilders extends ToPlaidClientBuilderOps
 

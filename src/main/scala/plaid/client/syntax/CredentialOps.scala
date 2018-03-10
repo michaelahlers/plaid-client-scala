@@ -1,4 +1,4 @@
-package plaid.syntax.client
+package plaid.client.syntax
 
 import plaid.client.Credential
 
