@@ -7,11 +7,12 @@ import scala.language.{ dynamics, implicitConversions }
  */
 final class FieldOps[A <: AnyRef](val self: A) extends AnyVal {
 
-	def get[B](name: Symbol): B = {
-		val field = self.getClass.getDeclaredField(name.name)
-		field.setAccessible(true)
-		field.get(self).asInstanceOf[B]
-	}
+	def get[B](name: Symbol): B =
+		self synchronized {
+			val field = self.getClass.getDeclaredField(name.name)
+			field.setAccessible(true)
+			field.get(self).asInstanceOf[B]
+		}
 
 	def set[B](name: Symbol, value: B): A =
 		self synchronized {
