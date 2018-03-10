@@ -1,9 +1,9 @@
-package plaid.client.commons.syntax
+package plaid.client.commons.shapeless
 
 /**
  * Syntactic help for Shapeless.
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-package object shapeless {
+package object syntax {
 	object tags extends ToTagOps
 }

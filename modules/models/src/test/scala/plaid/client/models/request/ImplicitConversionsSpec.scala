@@ -4,7 +4,7 @@ import com.plaid.client.request.{ InstitutionsGetRequest => ReferenceInstitution
 import org.scalatest._
 import org.scalatest.prop.GeneratorDrivenPropertyChecks._
 import plaid.client.commons.reflection.syntax.FieldOps.Private
-import plaid.client.commons.syntax.shapeless.tags._
+import plaid.client.commons.shapeless.syntax.tags._
 import plaid.client.commons.scalatest.syntax.matchers._
 import org.scalatest.Matchers._
 import scala.language.postfixOps

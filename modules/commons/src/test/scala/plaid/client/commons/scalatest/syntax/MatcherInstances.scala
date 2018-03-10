@@ -3,8 +3,8 @@ package plaid.client.commons.scalatest.syntax
 import java.lang.reflect.Modifier
 
 import org.scalactic.source.Position
-import org.scalatest.exceptions.{StackDepthException, TestFailedException}
-import org.scalatest.matchers.{HavePropertyMatchResult, HavePropertyMatcher}
+import org.scalatest.exceptions.{ StackDepthException, TestFailedException }
+import org.scalatest.matchers.{ HavePropertyMatchResult, HavePropertyMatcher }
 import plaid.client.commons.reflection.syntax.FieldOps.Private
 import plaid.client.commons.reflection.syntax.fields._
 import shapeless.tag._

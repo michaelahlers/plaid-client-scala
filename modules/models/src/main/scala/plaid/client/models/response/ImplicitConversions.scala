@@ -1,7 +1,7 @@
 package plaid.client.models.response
 
 import com.plaid.client.response.{ Institution => ReferenceInstitution }
-import plaid.client.commons.syntax.shapeless.tags._
+import plaid.client.commons.shapeless.syntax.tags._
 import plaid.client.models.request.common.ImplicitConversions._
 import plaid.client.models.request.common.Product
 import plaid.client.models.response.Institution.Credential
