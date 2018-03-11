@@ -11,4 +11,6 @@ package object syntax {
 		extends ToCredentialOps
 		with ToCredentialProviderOps
 
+	object services extends ToServiceOps
+
 }
