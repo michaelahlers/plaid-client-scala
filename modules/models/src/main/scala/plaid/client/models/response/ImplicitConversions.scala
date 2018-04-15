@@ -1,6 +1,5 @@
 package plaid.client.models.response
 
-import com.plaid.client.response.{ Institution => ReferenceInstitution, InstitutionsGetResponse => ReferenceInstitutionsGetResponse }
 import plaid.client.commons.shapeless.syntax.tags._
 import plaid.client.models.request.common.ImplicitConversions._
 import plaid.client.models.request.common.Product
@@ -19,7 +18,7 @@ object ImplicitConversions
 object FromReferenceImplicits extends FromReferenceImplicits
 trait FromReferenceImplicits {
 
-	implicit def implyInstitutionCredential(v: ReferenceInstitution#Credential): Credential = {
+	implicit def implyInstitutionCredential(v: com.plaid.client.response.Institution#Credential) = {
 		import Institution.Credential.Tags._
 		import v._
 		Institution.Credential(
@@ -29,7 +28,7 @@ trait FromReferenceImplicits {
 		)
 	}
 
-	implicit def implyInstitution(v: ReferenceInstitution): Institution = {
+	implicit def implyInstitution(v: com.plaid.client.response.Institution) = {
 		import Institution.Tags._
 		Institution(
 			id = v.getInstitutionId.tagged[Id],
@@ -41,7 +40,7 @@ trait FromReferenceImplicits {
 		)
 	}
 
-	implicit def implyInstitutionsGetResponse(v: ReferenceInstitutionsGetResponse): InstitutionsGetResponse = {
+	implicit def implyInstitutionsGetResponse(v: com.plaid.client.response.InstitutionsGetResponse) = {
 		import InstitutionsGetResponse._
 		InstitutionsGetResponse(
 			institutions = v.getInstitutions.asScala.toList.map({ v => v: Institution }),

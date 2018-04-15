@@ -1,7 +1,6 @@
 package plaid.client.models.request.common
 
 import com.plaid.client.request.common.Product._
-import com.plaid.client.request.common.{ Product => ReferenceProduct }
 import plaid.client.models.request.common.Product._
 
 import scala.language.implicitConversions
@@ -13,7 +12,7 @@ object ImplicitConversions extends FromReferenceImplicits with ToReferenceImplic
 
 object FromReferenceImplicits extends FromReferenceImplicits
 trait FromReferenceImplicits {
-	implicit def implyProduct(v: ReferenceProduct): Product =
+	implicit def implyProduct(v: com.plaid.client.request.common.Product) =
 		v match {
 			case AUTH => Authentication
 			case BALANCE => Balance
@@ -26,7 +25,8 @@ trait FromReferenceImplicits {
 
 object ToReferenceImplicits extends ToReferenceImplicits
 trait ToReferenceImplicits {
-	implicit def implyProduct(v: Product): ReferenceProduct =
+	implicit def implyProduct(v: Product) = {
+		import com.plaid.client.request.common.Product._
 		v match {
 			case Authentication => AUTH
 			case Balance => BALANCE
@@ -35,4 +35,5 @@ trait ToReferenceImplicits {
 			case Income => INCOME
 			case Transactions => TRANSACTIONS
 		}
+	}
 }
