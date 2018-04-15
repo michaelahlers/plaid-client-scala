@@ -1,6 +1,7 @@
 package plaid.client.models.response
 
 import com.plaid.client.response.{ Institution => ReferenceInstitution }
+import com.plaid.client.response.{ InstitutionsGetResponse => ReferenceInstitutionsGetResponse }
 import plaid.client.commons.shapeless.syntax.tags._
 import plaid.client.models.request.common.ImplicitConversions._
 import plaid.client.models.request.common.Product
@@ -38,6 +39,14 @@ trait FromReferenceImplicits {
 			hasMFA = v.hasMfa,
 			multiFactorAuthentications = v.getMfa.asScala.toList.map(_.tagged[MFA]),
 			products = v.getProducts.asScala.toList.map({ p => p: Product })
+		)
+	}
+
+	implicit def implyInstitutionsGetResponse(v: ReferenceInstitutionsGetResponse): InstitutionsGetResponse = {
+		import InstitutionsGetResponse._
+		InstitutionsGetResponse(
+			institutions = v.getInstitutions.asScala.toList.map({ v => v: Institution }),
+			total = Count(v.getTotal)
 		)
 	}
 

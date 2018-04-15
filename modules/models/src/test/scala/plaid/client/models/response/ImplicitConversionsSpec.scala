@@ -1,5 +1,6 @@
 package plaid.client.models.response
 
+import com.plaid.client.response.InstitutionSpec.Generators._
 import com.plaid.client.response.{ InstitutionSpec => ReferenceInstitutionSpec }
 import org.scalatest.Matchers._
 import org.scalatest._
@@ -17,28 +18,47 @@ import scala.collection.JavaConverters._
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-class ImplicitConversionsSpec extends FlatSpec {
+class ImplicitConversionsSpec extends WordSpec {
 
-	it must "convert from reference institution" in {
-		import ReferenceInstitutionSpec.Generators._
-		forAll(Institutions.gen, minSuccessful(100)) { institution =>
-			val i: Institution = institution
-			i should have(
-				'id(institution.getInstitutionId),
-				'name(institution.getName),
-				'credentials(institution.getCredentials.asScala map { credential =>
-					val c: Credential = credential
-					c should have(
-						'label(credential.getLabel),
-						'name(credential.getName),
-						'typ(credential.getType)
+	"From reference" must {
+
+		"convert" when {
+
+			"institution" in {
+				forAll(Institutions.gen, minSuccessful(100)) { institution =>
+					val i = institution: Institution
+					i should have(
+						'id(institution.getInstitutionId),
+						'name(institution.getName),
+						'credentials(institution.getCredentials.asScala map { credential =>
+							val c = credential: Credential
+							c should have(
+								'label(credential.getLabel),
+								'name(credential.getName),
+								'typ(credential.getType)
+							)
+							c
+						}),
+						'hasMFA(institution.hasMfa),
+						'multiFactorAuthentications(institution.getMfa.asScala),
+						'products(institution.getProducts.asScala map { product =>
+							product: Product
+						})
 					)
-					c
-				}),
-				'hasMFA(institution.hasMfa),
-				'multiFactorAuthentications(institution.getMfa.asScala),
-				'products(institution.getProducts.asScala map { p => p: Product })
-			)
+				}
+			}
+
+			"institutions get response" in {
+				forAll(Institutions.GetResponses.gen) { response =>
+					(response: InstitutionsGetResponse) should have(
+						'institutions(response.getInstitutions.asScala map { institution =>
+							institution: Institution
+						}),
+						'total(response.getTotal)
+					)
+				}
+			}
+
 		}
 	}
 

@@ -15,7 +15,9 @@ import scala.collection.JavaConverters._
 object InstitutionSpec {
 
 	object Generators {
+
 		object Institutions {
+
 			val gen: Gen[Institution] =
 				for {
 					id <- arbitrary[String]
@@ -47,7 +49,23 @@ object InstitutionSpec {
 						.set('mfa, multiFactorAuthentications)
 						.set('products, products)
 				}
+
+			object GetResponses {
+				val gen: Gen[InstitutionsGetResponse] =
+					for {
+						institutions <- listOf(Institutions.gen).map(_.asJava)
+						total <- posNum[Int]
+						response = new InstitutionsGetResponse
+					} yield {
+						import reflection.syntax.fields._
+						response
+							.set('institutions, institutions)
+							.set('total, total)
+					}
+			}
+
 		}
+
 	}
 
 }
