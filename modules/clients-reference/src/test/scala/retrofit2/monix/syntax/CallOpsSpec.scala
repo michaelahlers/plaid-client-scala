@@ -2,7 +2,9 @@ package retrofit2.monix.syntax
 
 import monix.eval.Task
 import monix.execution.Scheduler.Implicits.global
+import okhttp3.ResponseBody
 import org.scalamock.scalatest._
+import org.scalatest.Inspectors._
 import org.scalatest.Matchers._
 import org.scalatest._
 import org.scalatest.concurrent.ScalaFutures._
@@ -16,8 +18,9 @@ import scala.language.postfixOps
  */
 class CallOpsSpec extends WordSpec with MockFactory {
 
-	"Calls as tasks" must {
-		def withFixtures[A](borrower: (Call[Unit], Task[Response[Unit]]) => A): A = {
+	"Calls as tasks" when {
+
+		def withFixtures[A](modified: Task[Response[Unit]] => Task[Response[Unit]] = identity)(borrower: (Call[Unit], Task[Response[Unit]]) => A): A = {
 			val source = mock[Call[Unit]]
 			val local = mock[Call[Unit]]
 
@@ -32,28 +35,93 @@ class CallOpsSpec extends WordSpec with MockFactory {
 
 			copy.expects(source).anyNumberOfTimes().returns(local)
 
-			borrower(local, source.asTask(copy))
+			borrower(local, modified(source.asTask(copy)))
 		}
 
-		"not execute eagerly" in withFixtures { (local, _) =>
-			(local.execute _).expects().never()
+		"never run" must {
+			"not execute calls" in withFixtures() { (local, _) =>
+				(local.execute _).expects().never()
+			}
 		}
 
-		"execute calls" that {
+		"run repeatedly" must {
+			val responses = Response.success(()) :: Response.error[Unit](400, mock[ResponseBody]) :: Nil
+			val errors = List.fill(2) { new Exception }
 
-			"return responses" in withFixtures { (local, task) =>
-				val response = Response.success(())
-				(local.execute _).expects().returns(response)
-				task.runAsync.futureValue should be(response)
+			"execute many calls" that {
+
+				"return responses" in withFixtures() { (local, task) =>
+					inSequence {
+						responses foreach { response =>
+							(local.execute _).expects().once().returns(response)
+						}
+					}
+
+					forAll(responses) { response =>
+						task.runAsync.futureValue should be(response)
+					}
+				}
+
+				"throw exceptions" in withFixtures() { (local, task) =>
+					inSequence {
+						errors foreach { error =>
+							(local.execute _).expects().once().throws(error)
+						}
+					}
+
+					forAll(errors) { error =>
+						task.runAsync.failed.futureValue should be(error)
+					}
+				}
+
 			}
 
-			"throw exceptions" in withFixtures { (local, task) =>
-				val error = new Exception
-				(local.execute _).expects().throws(error)
-				task.runAsync.failed.futureValue should be(error)
+			"execute one memoized call" that {
+
+				"return responses" in withFixtures(_.memoize) { (local, task) =>
+					val response = responses.head
+					(local.execute _).expects().once().returns(response)
+					forAll(responses) { _ =>
+						task.runAsync.futureValue should be(response)
+					}
+				}
+
+				"throw exceptions" in withFixtures(_.memoize) { (local, task) =>
+					val error = errors.head
+					(local.execute _).expects().once().throws(error)
+					forAll(errors) { _ =>
+						task.runAsync.failed.futureValue should be(error)
+					}
+				}
+
+			}
+
+			"execute one success-memoized call" that {
+
+				"return responses" in withFixtures(_.memoizeOnSuccess) { (local, task) =>
+					val response = responses.head
+					(local.execute _).expects().once().returns(response)
+					forAll(responses) { _ =>
+						task.runAsync.futureValue should be(response)
+					}
+				}
+
+				"throw exceptions" in withFixtures(_.memoizeOnSuccess) { (local, task) =>
+					inSequence {
+						errors foreach { error =>
+							(local.execute _).expects().once().throws(error)
+						}
+					}
+
+					forAll(errors) { error =>
+						task.runAsync.failed.futureValue should be(error)
+					}
+				}
+
 			}
 
 		}
+
 	}
 
 }
