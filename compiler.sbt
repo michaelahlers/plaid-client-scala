@@ -1,9 +1,10 @@
-crossScalaVersions in ThisBuild := Seq("2.11.12", "2.12.4")
+/* TODO: Upgrade to Scala 2.12.6 when available (fixed ETA deprecation notice with scala/scala#6177), skipping 2.12.5 (which breaks macros with scala/scala-dev#480). */
+crossScalaVersions in ThisBuild := Seq("2.11.12", "2.12.3")
 
-scalaVersion in ThisBuild := "2.12.4"
+scalaVersion in ThisBuild := "2.12.3"
 
 scalacOptions in ThisBuild := {
-	scalafixScalacOptions.value ++
+	/*scalafixScalacOptions.value*/ Nil ++
 		(CrossVersion.partialVersion(scalaVersion.value) match {
 
 			/** See also [[https://tpolecat.github.io/2014/04/11/scalac-flags.html ''Useful Scalac Flags'']]. */
