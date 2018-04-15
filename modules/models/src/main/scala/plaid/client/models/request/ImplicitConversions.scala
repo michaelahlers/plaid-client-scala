@@ -11,9 +11,8 @@ object ImplicitConversions extends ToReferenceImplicits
 
 object ToReferenceImplicits extends ToReferenceImplicits
 trait ToReferenceImplicits {
-	implicit def implyInstitutionsGetRequest(v: InstitutionsGetRequest): ReferenceInstitutionsGetRequest =
-		v match {
-			case InstitutionsGetRequest(offset, length) =>
-				new ReferenceInstitutionsGetRequest(length, offset)
-		}
+	implicit def implyInstitutionsGetRequest(v: InstitutionsGetRequest): ReferenceInstitutionsGetRequest = {
+		import v._
+		new ReferenceInstitutionsGetRequest(length, offset)
+	}
 }

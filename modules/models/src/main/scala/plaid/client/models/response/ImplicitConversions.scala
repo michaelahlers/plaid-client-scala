@@ -1,7 +1,6 @@
 package plaid.client.models.response
 
-import com.plaid.client.response.{ Institution => ReferenceInstitution }
-import com.plaid.client.response.{ InstitutionsGetResponse => ReferenceInstitutionsGetResponse }
+import com.plaid.client.response.{ Institution => ReferenceInstitution, InstitutionsGetResponse => ReferenceInstitutionsGetResponse }
 import plaid.client.commons.shapeless.syntax.tags._
 import plaid.client.models.request.common.ImplicitConversions._
 import plaid.client.models.request.common.Product
