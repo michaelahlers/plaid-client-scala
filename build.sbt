@@ -1,7 +1,6 @@
 lazy val `clients-reference` =
 	(project in file("modules") / "clients-reference")
-		.aggregate(commons, models)
-		.dependsOn(commons % "test->test;compile->compile")
+		.dependsOn(commons % "test->test;compile->compile", models)
 
 lazy val commons =
 	project in file("modules") / "commons"
