@@ -9,6 +9,9 @@ lazy val models =
 	(project in file("modules") / "models")
 		.dependsOn(commons % "test->test;compile->compile")
 
+lazy val `plaid-client-scala` =
+	project in file(".")
+
 /* Enable integration tests. */
 configs(IntegrationTest)
 Defaults.itSettings
