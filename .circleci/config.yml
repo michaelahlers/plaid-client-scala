@@ -6,7 +6,7 @@ use_docker: &use_docker
 
 # See https://discuss.circleci.com/t/wildcard-pattern-cache-directories/5159/4 for details.
 cache_key: &cache_key
-  v1-{{ arch }}-{{ checksum "checksums" }}
+  v1-{{ arch }}-{{ checksum "commits" }}
   v1-
 
 use_restore_cache: &use_restore_cache
@@ -36,7 +36,7 @@ jobs:
     <<: *use_docker
     steps:
       - checkout
-      - run: git ls-tree HEAD **/dependencies.sbt project/* > checksums
+      - run: git ls-files project/* **/dependencies.sbt | xargs git ls-tree HEAD > commits
       - *use_restore_cache
       - run: sbt ';+test:compile;+it:compile;+doc'
       - *use_save_cache
