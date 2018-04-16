@@ -10,9 +10,6 @@ import scala.language.implicitConversions
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
 final class ServiceOps(val self: PlaidApiService) extends AnyVal {
-
-	def execute[Request, Response](r: Request)(implicit executor: Executor[Request, Response]): Future[Response] = executor(self, r)
-
 }
 
 trait ToServiceOps {
