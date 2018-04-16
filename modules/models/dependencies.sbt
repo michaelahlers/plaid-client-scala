@@ -3,6 +3,6 @@ libraryDependencies ++=
 		Nil
 
 libraryDependencies ++=
-	"com.beachape" %% "enumeratum" % "1.5.12" ::
+	"com.beachape" %% "enumeratum" % "1.5.13" ::
 		"com.chuusai" %% "shapeless" % "2.3.3" ::
 		Nil
