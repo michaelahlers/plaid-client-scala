@@ -1,6 +1,6 @@
 package plaid.client
 
 /**
- * Also contains [[scala.Product]] types matching Plaid's domain model. Intentionally mirrors the package structure at [[com.plaid.client]].
+ * Contains [[scala.Product]] types matching Plaid's domain model.
  */
 package object models
