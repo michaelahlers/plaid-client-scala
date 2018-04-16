@@ -1,9 +1,7 @@
 package plaid.client.syntax
 
 import com.plaid.client.PlaidApiService
-import plaid.client.Executor
 
-import scala.concurrent.Future
 import scala.language.implicitConversions
 
 /**
