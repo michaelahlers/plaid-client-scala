@@ -1,6 +1,5 @@
 package plaid.client.models.response
 
-import plaid.client.commons.shapeless.TaggerCompanion
 import plaid.client.models.response.InstitutionsGetResponse._
 import shapeless.tag._
 
@@ -12,6 +11,6 @@ case class InstitutionsGetResponse(institutions: List[Institution], total: Int @
 object InstitutionsGetResponse {
 
 	sealed trait Count
-	object Count extends TaggerCompanion[Int, Count]
+	object Count extends Tagger[Count]
 
 }

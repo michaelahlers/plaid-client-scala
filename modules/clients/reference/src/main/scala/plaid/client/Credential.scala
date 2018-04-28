@@ -11,11 +11,11 @@ import shapeless.tag._
 case class Credential(client: Client, secret: String @@ Key, public: Option[String @@ Key])
 object Credential {
 	trait Key
-	object Key extends TaggerCompanion[String, Key]
+	object Key extends Tagger[Key]
 
 	object Client {
 		trait Id
-		object Id extends TaggerCompanion[String, Id]
+		object Id extends Tagger[Id]
 	}
 
 	case class Client(id: String @@ Id)

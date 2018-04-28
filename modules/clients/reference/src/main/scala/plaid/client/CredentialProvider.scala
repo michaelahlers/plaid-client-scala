@@ -3,7 +3,6 @@ package plaid.client
 import plaid.client.Credential.Client._
 import plaid.client.Credential._
 import plaid.client.CredentialProvider.Named._
-import plaid.client.commons.shapeless.TaggerCompanion
 import shapeless.tag._
 
 import scala.collection.Map
@@ -23,7 +22,7 @@ object CredentialProvider {
 
 	object Named {
 		trait Name
-		object Name extends TaggerCompanion[String, Name]
+		object Name extends Tagger[Name]
 		case class Names(clientId: String @@ Name, secretKey: String @@ Name, publicKey: String @@ Name)
 	}
 
