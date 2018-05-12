@@ -1,5 +1,6 @@
 libraryDependencies in ThisBuild ++=
-	"org.scalactic" %% "scalactic" % "3.0.5" ::
+	"org.typelevel" %% "cats-core" % "1.1.0" ::
+		"org.scalactic" %% "scalactic" % "3.0.5" ::
 		Nil
 
 libraryDependencies in ThisBuild ++=
