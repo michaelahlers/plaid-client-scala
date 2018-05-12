@@ -1,7 +1,6 @@
-/* TODO: Upgrade to Scala 2.12.6 when available (fixed ETA deprecation notice with scala/scala#6177), skipping 2.12.5 (which breaks macros with scala/scala-dev#480). */
-crossScalaVersions in ThisBuild := Seq("2.11.12", "2.12.3")
+crossScalaVersions in ThisBuild := Seq("2.11.12", "2.12.6")
 
-scalaVersion in ThisBuild := "2.12.3"
+scalaVersion in ThisBuild := "2.12.6"
 
 scalacOptions in ThisBuild := {
 	/*scalafixScalacOptions.value*/ Nil ++
