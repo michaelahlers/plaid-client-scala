@@ -1,23 +1,23 @@
 package plaid.client.models.request.common
 
 import com.plaid.client.request.common.Product._
-import com.plaid.client.request.common.{ Product => ReferenceProduct }
+import cats._
 import org.scalatest.Inspectors._
 import org.scalatest.Matchers._
 import org.scalatest._
-import plaid.client.models.request.common.ImplicitConversions._
 import plaid.client.models.request.common.Product._
+import ProductInstances._
 
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-class ImplicitConversionsSpec extends WordSpec {
+class ProductInstancesSpec extends WordSpec {
 
-	"From reference" when {
+	"Inject product" must {
 
-		"product" in {
-			forAll(ReferenceProduct.values().toList) { product =>
-				(product: Product) should be {
+		"apply" in {
+			forAll(com.plaid.client.request.common.Product.values().toList) { product =>
+				InjectProduct.apply(product) should be {
 					product match {
 						case AUTH => Authentication
 						case BALANCE => Balance
@@ -26,18 +26,13 @@ class ImplicitConversionsSpec extends WordSpec {
 						case INCOME => Income
 						case TRANSACTIONS => Transactions
 					}
-
 				}
 			}
-
 		}
-	}
 
-	"To reference" when {
-
-		"product" in {
+		"unapply" in {
 			forAll(Product.values) { product =>
-				(product: ReferenceProduct) should be {
+				InjectProduct.unapply(product) should contain {
 					product match {
 						case Authentication => AUTH
 						case Balance => BALANCE

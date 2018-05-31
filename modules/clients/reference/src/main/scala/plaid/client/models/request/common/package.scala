@@ -5,6 +5,6 @@ package plaid.client.models.request
  */
 package object common {
 
-	object instances extends
+	object instances extends ProductInstances
 
 }

@@ -1,7 +1,7 @@
 package plaid.client.models.response
 
 import plaid.client.commons.shapeless.syntax.tags._
-import plaid.client.models.request.common.ImplicitConversions._
+import plaid.client.models.request.common.instances._
 import plaid.client.models.request.common.Product
 import plaid.client.models.response.Institution.Credential
 
@@ -36,7 +36,7 @@ trait FromReferenceImplicits {
 			credentials = v.getCredentials.asScala.toList map { c => c: Credential },
 			hasMFA = v.hasMfa,
 			multiFactorAuthentications = v.getMfa.asScala.toList.map(_.tagged[MFA]),
-			products = v.getProducts.asScala.toList.map({ p => p: Product })
+			products = v.getProducts.asScala.toList.map(InjectProduct.apply)
 		)
 	}
 

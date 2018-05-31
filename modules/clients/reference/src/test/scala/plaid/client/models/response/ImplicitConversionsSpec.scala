@@ -3,8 +3,7 @@ package plaid.client.models.response
 import org.scalatest.Matchers._
 import org.scalatest._
 import org.scalatest.prop.GeneratorDrivenPropertyChecks._
-import plaid.client.models.request.common.ImplicitConversions._
-import plaid.client.models.request.common.Product
+import plaid.client.models.request.common.ProductInstances._
 import plaid.client.models.response.ImplicitConversions._
 import plaid.client.models.response.Institution.Credential
 
@@ -38,9 +37,7 @@ class ImplicitConversionsSpec extends WordSpec {
 					}),
 					'hasMFA(institution.hasMfa),
 					'multiFactorAuthentications(institution.getMfa.asScala),
-					'products(institution.getProducts.asScala map { product =>
-						product: Product
-					})
+					'products(institution.getProducts.asScala.map(InjectProduct.apply))
 				)
 			}
 		}
