@@ -10,4 +10,5 @@ libraryDependencies in ThisBuild ++=
 		"org.scalamock" %% "scalamock-scalatest-support" % "3.6.0" % Test ::
 		"org.scalatest" %% "scalatest" % "3.0.5" % Test ::
 		"org.scalamock" %% "scalamock" % "4.1.0" % Test ::
+		"org.typelevel" %% "cats-testkit" % "1.1.0" % Test ::
 		Nil
