@@ -12,22 +12,22 @@ import scala.language.implicitConversions
  */
 object ProductInstances extends ProductInstances
 trait ProductInstances {
-	implicit object InjectProduct extends Inject[com.plaid.client.request.common.Product, Product] {
+	implicit object InjectRefProduct extends Inject[Product, RefProduct] {
 		override val inj = {
-			case AUTH => Authentication
-			case BALANCE => Balance
-			case CREDIT_DETAILS => CreditDetails
-			case IDENTITY => Identity
-			case INCOME => Income
-			case TRANSACTIONS => Transactions
+			case Authentication => AUTH
+			case Balance => BALANCE
+			case CreditDetails => CREDIT_DETAILS
+			case Identity => IDENTITY
+			case Income => INCOME
+			case Transactions => TRANSACTIONS
 		}
 		override val prj = {
-			case Authentication => AUTH.some
-			case Balance => BALANCE.some
-			case CreditDetails => CREDIT_DETAILS.some
-			case Identity => IDENTITY.some
-			case Income => INCOME.some
-			case Transactions => TRANSACTIONS.some
+			case AUTH => Authentication.some
+			case BALANCE => Balance.some
+			case CREDIT_DETAILS => CreditDetails.some
+			case IDENTITY => Identity.some
+			case INCOME => Income.some
+			case TRANSACTIONS => Transactions.some
 		}
 	}
 }

@@ -7,4 +7,6 @@ package object common {
 
 	object instances extends ProductInstances
 
+	type RefProduct = com.plaid.client.request.common.Product
+
 }

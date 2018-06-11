@@ -15,7 +15,7 @@ import scala.collection.JavaConverters._
 /**
  * @author <a href="michael@ahlers.consulting">Michael Ahlers</a>
  */
-class ImplicitConversionsSpec extends WordSpec {
+class InstitutionInstancesSpec extends WordSpec {
 
 	"From reference" when {
 		import com.plaid.client.response.Generators._
@@ -37,7 +37,7 @@ class ImplicitConversionsSpec extends WordSpec {
 					}),
 					'hasMFA(institution.hasMfa),
 					'multiFactorAuthentications(institution.getMfa.asScala),
-					'products(institution.getProducts.asScala.map(InjectProduct.apply))
+					'products(institution.getProducts.asScala.flatMap(InjectRefProduct.unapply))
 				)
 			}
 		}
